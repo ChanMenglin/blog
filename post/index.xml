@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 技术博客</title><link>https://chanmenglin.github.io/blog/post/</link><description>Recent content in Posts on 技术博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 25 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://chanmenglin.github.io/blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>本博客的构建过程</title><link>https://chanmenglin.github.io/blog/post/2022/build-this-blog/</link><pubDate>Sat, 25 Jun 2022 00:00:00 +0000</pubDate><guid>https://chanmenglin.github.io/blog/post/2022/build-this-blog/</guid><description>&lt;img src="https://chanmenglin.github.io/blog/post/2022/build-this-blog/possessed-photography-M8QfxX2EQXo-unsplash.jpg" alt="Featured image of post 本博客的构建过程" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>在几年之前就有自建博客的打算，但一直没有找到心仪的博客搭建方案，最近几个月了解到了 &lt;a class="link" href="https://gohugo.io" target="_blank" rel="noopener"
+>hugo&lt;/a>，比较符合我的胃口，再加上 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+>Stack&lt;/a> 主题（感谢 hugo 和 Stack 主题的贡献者），让我下定决心开始搭建自己的博客网址。&lt;br>
+本文为本博客网站搭建过程的记录，也作为本博客的第一篇文章。&lt;/p>
+&lt;h2 id="准备工作">准备工作&lt;/h2>
+&lt;h3 id="安装-hugo">安装 hugo&lt;/h3>
+&lt;p>我使用的是 Mac 系统，因此采用 brew 安装&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#75715e"># 安装 Hugo&lt;/span>
+brew install hugo
+&lt;span style="color:#75715e"># 查看 HUgo 安装情况&lt;/span>
+hugo version
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="新建站点">新建站点&lt;/h3>
+&lt;p>hugo 安装完成后就可以开始新建存放博客文件的目录了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#75715e"># 新建站点&lt;/span>
+hugo new site Blog &lt;span style="color:#75715e"># 会新建名为 Blog 的文件夹，并添加必要的文件&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="安装博客主题">安装博客主题&lt;/h3>
+&lt;p>本博客网站使用的是 Stack 主题，你也可以选择自己喜欢的主题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#75715e"># 下载主题（这里使用的是 Stack 主题）&lt;/span>
+cd Blog
+git init
+git submodule add https://github.com/CaiJimmy/hugo-theme-stack/ themes/stack
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>到这里，我们的准备工作就算完成了&lt;/p>
+&lt;h3 id="修改配置文件">修改配置文件&lt;/h3>
+&lt;p>按照 Stack 的文档声明，将 Stack 主题下的部分文件复制到博客网站根目录中对应的文件下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#75715e"># 拷贝文件（仅限于第一次使用 Stack 主题）&lt;/span>
+cp -r themes/stack/assets assets
+cp themes/stack/config.yaml .
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>删除根目录下的 &lt;code>config.toml&lt;/code>（会自动替换为从 Stack 主题复制的 &lt;code>config.yaml&lt;/code> 替代）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">languageCode&lt;/span>: &lt;span style="color:#ae81ff">zh-cn &lt;/span> &lt;span style="color:#75715e"># 语言设置为 简体中文&lt;/span>
+&lt;span style="color:#f92672">defaultcontentlanguage&lt;/span>: &lt;span style="color:#ae81ff">zh-cn&lt;/span> &lt;span style="color:#75715e"># 默认语言设置为 简体中文&lt;/span>
+&lt;span style="color:#f92672">title&lt;/span>: &lt;span style="color:#ae81ff">My New Hugo Site &lt;/span> &lt;span style="color:#75715e"># 网站标题&lt;/span>
+&lt;span style="color:#f92672">theme&lt;/span>: &lt;span style="color:#ae81ff">stack &lt;/span> &lt;span style="color:#75715e"># 主题修改为 stack（需要与主题文件夹同名）&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里为最小配置，详细的配置可参考：https://docs.stack.jimmycai.com/zh/configuration/&lt;/p>
+&lt;h3 id="启动">启动&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#75715e"># 启动 HUgo 服务&lt;/span>
+hugo server -D
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>启动成功后就可以在 http://localhost:1313/ 查看生成的网站了&lt;/p>
+&lt;h2 id="修改网站">修改网站&lt;/h2>
+&lt;p>在 &lt;code>./content/&lt;/code> 目录下添加以下目录，丰富网站功能&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>categories&lt;/code>：分类&lt;/li>
+&lt;li>&lt;code>tags&lt;/code>：标签&lt;/li>
+&lt;li>&lt;code>page&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>about&lt;/code>：关于&lt;/li>
+&lt;li>&lt;code>archives&lt;/code> 归档&lt;/li>
+&lt;li>&lt;code>Search&lt;/code>：搜索&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>可以在 &lt;code>./content/post&lt;/code> 目录下写文章了&lt;/p>
+&lt;h2 id="部署">部署&lt;/h2>
+&lt;p>这里采用 Github Page 部署&lt;/p>
+&lt;ol>
+&lt;li>将项目文件上传到 Github（需要预先建好仓库）&lt;/li>
+&lt;li>将 public 目录添加到 gh-pages 分支&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>博客搭建还不是很完善，后续会持续更新&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>2022年6月25日 写于湖北武汉&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
